@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  host: localhost
+  port: 5433
+  username: referro
+  password: DonReferro
+  pool: 10
+  encoding: unicode
+  min_messages: WARNING
+
+development:
+  <<: *default
+  database: donreferro_development
+
+test:
+  <<: *default
+  database: donreferro_test
+
+production:
+  <<: *default
+  database: donreferro_production

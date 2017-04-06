@@ -1,0 +1,19 @@
+version: '2'
+
+volumes:
+  pg:
+    driver: local
+
+services:
+  postgres:
+    image: kiasaki/alpine-postgres:9.5
+    restart: always
+    volumes:
+      - 'pg:/var/lib/postgresql/data'
+    environment:
+      POSTGRES_DB: referro_development
+      POSTGRES_USER: referro
+      POSTGRES_PASSWORD: DonReferro
+      PGDATA: '/var/lib/postgresql/data'
+    ports:
+      - "5433:5432"
