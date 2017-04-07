@@ -1,3 +1,11 @@
 #!/usr/bin/env sh
 
-cd server/rails-api && bin/setup
+echo 'Setup server ...'
+pushd 'server/rails-api'
+  bin/setup
+popd
+
+echo 'Setup server ...'
+pushd 'client'
+  yarn install
+popd
