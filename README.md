@@ -21,6 +21,12 @@ You should have installed:
 
 ## Run the project
 
+First you need to run _Postgres_ with Docker:
+
+    docker-compose up
+
+This will start _client_ and _server_ apps:
+
     foreman start
 
 ## Resources useful
