@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
-import { TopBar } from '../components'
 import { API } from '../services'
-
-const styles = {
-  container: {
-    textAlign: 'center',
-    paddingTop: 200,
-  },
-}
+import { TopBar } from '../components'
+import Jobs from './Jobs'
 
 window.API = API
 
 class App extends Component {
   render () {
     return (
-      <TopBar title='Don Referro'/>
+      <div>
+        <TopBar title='Don Referro'/>
+        <Jobs />
+      </div>
     )
   }
 }
