@@ -37,7 +37,7 @@ export const JobList = ({ jobs }) => {
           key={ job.id }
           primaryText={ job.title }
           secondaryText={ job.description }
-          secondaryTextLines='1'
+          secondaryTextLines={1}
           rightIconButton={ rightIconMenu }
         />)) }
     </List>
