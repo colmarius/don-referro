@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
-import { JobList } from '../components'
+import { JobList, CreateButton } from '../components'
 import { API } from '../services'
+
+const styles = {
+  createButton: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  }
+}
 
 class Jobs extends Component {
   constructor () {
@@ -23,7 +30,16 @@ class Jobs extends Component {
   render () {
     const { jobs } = this.state
 
-    return <JobList jobs={ jobs }/>
+    return (
+      <div>
+        <div style={ styles.createButton }>
+          <CreateButton
+            onTouchTap={ () => console.log('tapped job create button') }
+          />
+        </div>
+        <JobList jobs={ jobs }/>
+      </div>
+    )
   }
 }
 
