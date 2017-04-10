@@ -2,6 +2,8 @@
 
 Simple application which shows a list of jobs. Small features can be built on it, like create a job, delete or edit an existing job.
 
+More readme infos on [server/rails-api](/server/rails-api) and on [client](/client).
+
 ## Requirements
 
 You should have installed:
