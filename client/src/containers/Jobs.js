@@ -27,6 +27,13 @@ class Jobs extends Component {
     })
   }
 
+  _deleteJob = (id) => {
+    API.deleteJob(id).then(response => {
+      const newJobs = this.state.jobs.filter(job => job.id !== id)
+      this.setState({ jobs: newJobs })
+    })
+  }
+
   render () {
     const { jobs } = this.state
 
@@ -37,7 +44,7 @@ class Jobs extends Component {
             onTouchTap={ () => console.log('tapped job create button') }
           />
         </div>
-        <JobList jobs={ jobs }/>
+        <JobList jobs={ jobs } onJobDelete={this._deleteJob}/>
       </div>
     )
   }
