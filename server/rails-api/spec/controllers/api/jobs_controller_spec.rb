@@ -41,6 +41,35 @@ RSpec.describe Api::JobsController, type: :controller do
     end
   end
 
+  describe 'PATCH #update' do
+    context 'with existing job' do
+      before do
+        @job = create_job
+      end
+
+      it 'should return a 200 response' do
+        new_params = {
+          title: 'New Junior Software Engineer',
+          description: 'new test'
+        }
+        patch :update, id: @job.id, job: new_params
+
+        expect(parsed_response['id']).to eq(@job.id)
+        expect(parsed_response['title']).to eq(new_params[:title])
+        expect(parsed_response['description']).to eq(new_params[:description])
+        expect(response.status).to eq(200)
+      end
+    end
+
+    context 'with missing job' do
+      it 'should return a 404 response' do
+        patch :update, id: 0, job: {}
+        expect(parsed_response).to eq({ 'message' =>  'Not Found'})
+        expect(response.status).to eq(404)
+      end
+    end
+  end
+
   describe 'DELETE #destroy' do
     context 'job exists' do
       before do
