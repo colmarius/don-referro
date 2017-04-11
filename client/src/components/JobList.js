@@ -22,14 +22,16 @@ const iconButtonElement = (
   </IconButton>
 )
 
-const rightIconMenu = (
-  <IconMenu iconButtonElement={iconButtonElement}>
-    <MenuItem>Edit</MenuItem>
-    <MenuItem>Delete</MenuItem>
-  </IconMenu>
-)
+const rightIconMenu = ({ jobId, onJobDelete }) => {
+  return (
+    <IconMenu iconButtonElement={iconButtonElement}>
+      <MenuItem>Edit</MenuItem>
+      <MenuItem onTouchTap={() => onJobDelete(jobId)}>Delete</MenuItem>
+    </IconMenu>
+  )
+}
 
-export const JobList = ({ jobs }) => {
+export const JobList = ({ jobs, onJobDelete }) => {
   return (
     <List>
       { jobs.map(job => (
@@ -38,7 +40,7 @@ export const JobList = ({ jobs }) => {
           primaryText={ job.title }
           secondaryText={ job.description }
           secondaryTextLines={1}
-          rightIconButton={ rightIconMenu }
+          rightIconButton={ rightIconMenu({ jobId: job.id, onJobDelete }) }
         />)) }
     </List>
   )
