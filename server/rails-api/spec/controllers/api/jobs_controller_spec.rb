@@ -4,6 +4,19 @@ require 'rails_helper'
 RSpec.describe Api::JobsController, type: :controller do
   let(:parsed_response) { JSON.parse(response.body) }
 
+  def create_job
+    Job.create(
+      title: 'Junior Software Engineer',
+      description: 'test',
+      job_type: 'full_time',
+      discipline: 'hr',
+      career_level: 'entry',
+      skills: 'ruby,javascript',
+      min_salary: 5000,
+      max_salary: 8000
+    )
+  end
+
   before do
     Job.delete_all
   end
@@ -18,15 +31,7 @@ RSpec.describe Api::JobsController, type: :controller do
 
     context 'one job present' do
       before do
-        @job = Job.create({ title: 'Junior Software Engineer',
-          description: 'test',
-          job_type: 'full_time',
-          discipline: 'hr',
-          career_level: 'entry',
-          skills: 'ruby,javascript',
-          min_salary: 5000,
-          max_salary: 8000
-        })
+        @job = create_job
       end
 
       it 'should return an array with 1 element' do
@@ -39,15 +44,7 @@ RSpec.describe Api::JobsController, type: :controller do
   describe 'DELETE #destroy' do
     context 'job exists' do
       before do
-        @job = Job.create({ title: 'Junior Software Engineer',
-          description: 'test',
-          job_type: 'full_time',
-          discipline: 'hr',
-          career_level: 'entry',
-          skills: 'ruby,javascript',
-          min_salary: 5000,
-          max_salary: 8000
-        })
+        @job = create_job
       end
 
       it 'should return a 200 response' do
