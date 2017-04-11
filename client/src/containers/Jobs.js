@@ -29,7 +29,8 @@ class Jobs extends Component {
 
   _deleteJob = (id) => {
     API.deleteJob(id).then(response => {
-      this._fetchJobs()
+      const newJobs = this.state.jobs.filter(job => job.id !== id)
+      this.setState({ jobs: newJobs })
     })
   }
 
