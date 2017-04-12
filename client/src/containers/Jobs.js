@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { JobList, CreateButton } from '../components'
 import { API } from '../services'
+import Drawer from 'material-ui/Drawer'
+import Form from './Form'
 
 const styles = {
   createButton: {
@@ -13,7 +15,8 @@ class Jobs extends Component {
   constructor () {
     super()
     this.state = {
-      jobs: []
+      jobs: [],
+      open: false
     }
   }
 
@@ -33,6 +36,18 @@ class Jobs extends Component {
       this.setState({ jobs: newJobs })
     })
   }
+  
+  _createJob = (title, description) => {
+    API.createJob({title, description}).then(response => {
+      const jobs = this.state.jobs
+      jobs.push(response)
+      this.setState({ jobs })
+    })
+  }  
+
+  _showForm = () => {
+    this.setState({open: !this.state.open});
+  }
 
   render () {
     const { jobs } = this.state
@@ -41,11 +56,14 @@ class Jobs extends Component {
       <div>
         <div style={ styles.createButton }>
           <CreateButton
-            onTouchTap={ () => console.log('tapped job create button') }
+            onTouchTap={ this._showForm }
           />
         </div>
         <JobList jobs={ jobs } onJobDelete={this._deleteJob}/>
-      </div>
+        <Drawer open={this.state.open}>
+          <Form onJobCreate={this._createJob}/>
+        </Drawer>
+      </div>  
     )
   }
 }
