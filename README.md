@@ -17,15 +17,17 @@ You should have installed:
 [foreman]: https://ddollar.github.io/foreman/
 [yarn]: https://yarnpkg.com/
 
+## Running services
+
+First you need to run _Postgres_ with Docker:
+
+    docker-compose up
+
 ## Setup
 
     ./setup
 
 ## Run the project
-
-First you need to run _Postgres_ with Docker:
-
-    docker-compose up
 
 This will start _client_ and _server_ apps:
 
