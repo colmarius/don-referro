@@ -1,4 +1,13 @@
 class Api::JobsController < ApplicationController
+  def create
+    job = Job.create(job_params)
+    if job.valid?
+      render json: job, status: :ok
+    else
+      render json: { message: 'Couldn\'t create job' }, status: :unprocessable_entity
+    end
+  end
+
   def index
     render json: Job.all
   end
