@@ -5,7 +5,7 @@ pushd 'server/rails-api'
   bin/setup
 popd
 
-echo 'Setup server ...'
+echo 'Setup client ...'
 pushd 'client'
   yarn install
 popd
