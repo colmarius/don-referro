@@ -12,6 +12,14 @@ class Api::JobsController < ApplicationController
     render json: Job.all
   end
 
+  def show
+    if job = Job.find(params[:id])
+      render json: job
+    else
+      render json: { message: 'Job not found' }, status: 404
+    end
+  end
+
   def update
     job = Job.find(params[:id])
     if job.update_attributes(job_params)
